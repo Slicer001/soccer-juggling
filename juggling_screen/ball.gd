@@ -8,6 +8,8 @@ const WARNING_THRESHOLD := 5
 @onready var outline: Sprite2D = $Outline
 @onready var warning: Node2D = $Warning
 
+var remaining_strikes = 100
+
 var moving := true
 var velocity := Vector2.ZERO
 
@@ -32,8 +34,17 @@ func _physics_process(delta: float) -> void:
 
 
 func strike(striking_force: float) -> void:
-	moving = true
-	self.velocity = Vector2((randf()-0.5) * 2.0, striking_force * -1)
+	remaining_strikes -= 1
+	#how many times left to hit the ball before it is done
+	if remaining_strikes > 0:
+		moving = true
+		self.velocity = Vector2((randf()-0.5) * 2.0, striking_force * -1)
+	if remaining_strikes <= 0:
+		#if on the left side of the screen, kick off to the left
+		if self.position.x < 1920 * 0.5:
+			self.velocity = Vector2(striking_force * -1, striking_force * -1)
+		else:
+			self.velocity = Vector2(striking_force, striking_force * -1)
 
 
 func _on_area_entered(area: Area2D) -> void:

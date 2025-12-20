@@ -25,7 +25,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	self.global_position.x = focused_ball.global_position.x
+	if focused_ball:
+		self.global_position.x = focused_ball.global_position.x
+	else:
+		#reset to base position
+		#self.global_position.x = 
+		pass
 
 func _input(event: InputEvent) -> void:
 	var juggling_2d = self.get_parent()
