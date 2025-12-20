@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbg6ayu22n5tt"]
+
+[ext_resource type="Script" uid="uid://bvuf4x0qp81r6" path="res://juggling_screen/ball.gd" id="1_16ri7"]
+[ext_resource type="Texture2D" uid="uid://dy5ncobswgnap" path="res://sprites/ball.png" id="2_twdgk"]
+[ext_resource type="Texture2D" uid="uid://d1lbyrs7ugpca" path="res://sprites/ui/warning_outline.png" id="3_e1xaa"]
+[ext_resource type="Texture2D" uid="uid://p5rg36asskww" path="res://sprites/ui/warning.png" id="3_twdgk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sy3ef"]
+radius = 8.0
+
+[node name="Ball" type="Node2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_16ri7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sy3ef")
+
+[node name="Outline" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 0.45490196, 0, 1)
+scale = Vector2(1.125, 1.125)
+texture = ExtResource("2_twdgk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_twdgk")
+
+[node name="Warning" type="Node2D" parent="."]
+visible = false
+
+[node name="WarningOutline" type="Sprite2D" parent="Warning"]
+self_modulate = Color(1, 0.45490196, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_e1xaa")
+
+[node name="Warning" type="Sprite2D" parent="Warning"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_twdgk")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
