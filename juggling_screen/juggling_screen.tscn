@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bm80fte4ltpp7"]
+[gd_scene load_steps=29 format=3 uid="uid://bm80fte4ltpp7"]
 
 [ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_csx3m"]
 [ext_resource type="Texture2D" uid="uid://cgmij3oi0ycm0" path="res://sprites/background/Background Castle .png" id="1_ejlqa"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://by0nw4l6k8578" path="res://sprites/ui/lane.png" id="10_mdcjv"]
 [ext_resource type="Texture2D" uid="uid://bxt5d6ehypdfp" path="res://sprites/strike_marker.png" id="11_u0x2w"]
 [ext_resource type="Texture2D" uid="uid://djwkestb1fkoo" path="res://sprites/ui/Arrow_Up_Key_Dark.png" id="14_lukk6"]
+[ext_resource type="Texture2D" uid="uid://5rjr13bb3jn1" path="res://sprites/player/player_spritesheet.png" id="16_8tn16"]
 [ext_resource type="Script" uid="uid://dwons01prkgdm" path="res://juggling_screen/hud.gd" id="16_vqhe1"]
 [ext_resource type="Texture2D" uid="uid://bknck7l6ciwpb" path="res://sprites/ui/heart.png" id="17_lukk6"]
 
@@ -25,16 +26,60 @@ size = Vector2(480, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmf2d"]
 size = Vector2(32, 96)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlbxp"]
+atlas = ExtResource("16_8tn16")
+region = Rect2(0, 0, 109, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnpes"]
+atlas = ExtResource("16_8tn16")
+region = Rect2(0, 0, 109, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i31tj"]
+atlas = ExtResource("16_8tn16")
+region = Rect2(109, 0, 109, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no3jc"]
+atlas = ExtResource("16_8tn16")
+region = Rect2(218, 0, 109, 157)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdcjv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlbxp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnpes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i31tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no3jc")
+}],
+"loop": true,
+"name": &"kick",
+"speed": 5.0
+}]
+
 [sub_resource type="Environment" id="Environment_vqhe1"]
 background_mode = 3
 tonemap_mode = 3
 glow_enabled = true
-glow_strength = 1.5
+glow_levels/2 = 10.0
+glow_strength = 1.3
+glow_blend_mode = 1
 adjustment_enabled = true
 
 [sub_resource type="Theme" id="Theme_fd8gr"]
 default_font = ExtResource("1_csx3m")
 default_font_size = 128
+Label/constants/outline_size = 16
 
 [node name="JugglingScreen" type="Node"]
 script = ExtResource("1_u0x2w")
@@ -113,6 +158,7 @@ scale = Vector2(4, 4)
 script = ExtResource("8_te0tn")
 
 [node name="Sprite2D" type="Sprite2D" parent="Juggling2D/Player"]
+visible = false
 texture = ExtResource("8_wmf2d")
 
 [node name="Area2D" type="Area2D" parent="Juggling2D/Player"]
@@ -137,6 +183,12 @@ visible = false
 position = Vector2(0, -64)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("14_lukk6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Juggling2D/Player"]
+position = Vector2(0, 9)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_mdcjv")
+animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="Juggling2D"]
 anchor_mode = 0
@@ -166,6 +218,8 @@ offset_bottom = 40.0
 grow_horizontal = 2
 pivot_offset = Vector2(182, 69)
 text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HealthContainer" type="HBoxContainer" parent="HUD"]
 layout_mode = 0

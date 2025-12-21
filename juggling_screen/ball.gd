@@ -1,7 +1,7 @@
 extends Node2D
 class_name Ball
 
-const GRAVITY := Vector2(0, 9.8)
+const GRAVITY := Vector2(0, 5.0) # Vector2(0, 9.8)
 const WARNING_THRESHOLD := 5
 
 @onready var area_2d: Area2D = $Area2D
@@ -16,7 +16,7 @@ var score_value := 100
 var moving := true
 var velocity := Vector2.ZERO
 
-var active_lane = 0
+var active_lane = 0 : set = set_active_lane
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,8 +25,6 @@ func _ready() -> void:
 func setup(_juggling_2d: Juggling2D, _active_lane: int) -> void:
 	self.juggling_2d = _juggling_2d
 	self.active_lane = _active_lane
-	self.global_position = Vector2(juggling_2d.get_lane_global_position(active_lane).x, 256.0)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -40,6 +38,7 @@ func _physics_process(delta: float) -> void:
 		warning.show()
 	else:
 		warning.hide()
+
 
 
 func strike(player: Player, striking_force: float) -> void:
@@ -71,13 +70,19 @@ func strike(player: Player, striking_force: float) -> void:
 func take_hit(_player: Player, striking_force: float) -> void:
 	self.velocity = Vector2(0, striking_force * -1)
 
+
+
 func get_points(striking_force: float) -> int:
 	var accuracy = 1.0 - (abs(striking_force - 14.5) / 14.5)
 	#if close enough, give full score
 	if abs(accuracy - 1.0) < 0.05:
 		accuracy = 1.0
-	print(accuracy)
 	return int(accuracy * score_value)
+
+func set_active_lane(value: int) -> void:
+	active_lane = value
+	self.global_position = Vector2(juggling_2d.get_lane_global_position(active_lane).x, 256.0)
+
 
 
 func _on_area_entered(area: Area2D) -> void:

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh4c1qk7o53tg"]
+
+[ext_resource type="PackedScene" uid="uid://dbg6ayu22n5tt" path="res://juggling_screen/ball.tscn" id="1_qlno7"]
+[ext_resource type="Script" uid="uid://xniv6lfyjqph" path="res://juggling_screen/balls/strong_ball.gd" id="2_6qrqs"]
+[ext_resource type="Texture2D" uid="uid://bwtwqdcvvv6gd" path="res://sprites/balls/ball_pink.png" id="2_jua0j"]
+
+[node name="StrongBall" instance=ExtResource("1_qlno7")]
+script = ExtResource("2_6qrqs")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_jua0j")

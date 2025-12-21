@@ -12,4 +12,4 @@ func take_hit(player: Player, _striking_force: float) -> void:
 	player.focused_ball = null
 	#teleport ball
 	self.velocity = Vector2.UP * 5
-	self.position = Vector2((1920 * 0.5)*randf() + 1920*0.25, 256.0)
+	self.active_lane = randi_range(0, juggling_2d.lanes.size()-1)

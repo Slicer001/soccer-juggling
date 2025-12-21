@@ -61,10 +61,8 @@ func _input(event: InputEvent) -> void:
 		active_lane = juggling_2d.get_next_lane(active_lane, +1)
 		pass
 	#begin striking ball
-	if focused_ball and event.is_action_pressed("ui_up"):
-		if area_2d.overlaps_area(focused_ball.area_2d):
-			#self.begin_strike()
-			self.auto_strike()
+	if event.is_action_pressed("ui_up"):
+		self.auto_strike()
 	#activate strike
 	if event.is_action_released("ui_up"):
 		if focused_ball and striking:
@@ -108,22 +106,19 @@ func activate_strike() -> void:
 	juggling_2d.number_of_strikes += 1
 
 func auto_strike() -> void:
-	#first, stop tween
-	if striking_tween:
-		striking_tween.kill()
-		striking_tween = null
-	#resume speed
 	var juggling_2d = self.get_parent()
-	juggling_2d.set_physics_speed(1.0)
-	#hide strike
+	#hide strike button hint
 	strike_hint.hide()
-	strike_qte.hide()
 	#see how good the strike was
 	var striking_force = 14.5
-	#use strike to determing force
-	focused_ball.strike(self, striking_force)
-	#no longer striking
-	striking = false
+	#use the active lane to see which ball you strike
+	var ball: Ball = juggling_2d.get_next_ball(active_lane)
+	#if there is no ball, the character is stunned for a second
+	if not ball or not self.area_2d.overlaps_area(ball.area_2d):
+		#TODO: add character stun
+		return
+	#strike the ball
+	ball.strike(self, striking_force)
 	#increase strike count
 	juggling_2d.number_of_strikes += 1
 
