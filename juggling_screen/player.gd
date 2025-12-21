@@ -9,6 +9,7 @@ class_name Player
 @onready var strike_bar: Sprite2D = $StrikeQTE/StrikeBar
 @onready var strike_marker: Sprite2D = $StrikeQTE/StrikeMarker
 @onready var strike_hint: Sprite2D = $StrikeHint
+@onready var foot_sprite: Sprite2D = $FootSprite
 
 
 const STRIKE_TIME := 1.0
@@ -29,6 +30,7 @@ var active_lane := 0 : set = set_active_lane
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animated_sprite_2d.play("idle")
+	active_lane = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,9 +39,9 @@ func _physics_process(delta: float) -> void:
 	#if focused_ball:
 		#self.global_position.x = focused_ball.global_position.x
 	#snap to active lane
-	var juggling_2d = self.get_parent()
-	if active_lane != -1:
-		self.global_position = juggling_2d.get_lane_global_position(active_lane)
+	#var juggling_2d = self.get_parent()
+	#if active_lane != -1:
+		#self.global_position.x = juggling_2d.get_lane_global_position(active_lane).x
 	#blink if invincible
 	if invincible:
 		invincible_timer -= delta
@@ -118,6 +120,9 @@ func auto_strike() -> void:
 		return
 	#quickly slow down time
 	juggling_2d.slow_time(0.25)
+	#set location to the ball being kicked
+	self.global_position.x = ball.global_position.x + 32 + 8
+	self.global_position.y = ball.global_position.y + 32 - 8
 	#play the animation
 	animated_sprite_2d.frame = 0
 	animated_sprite_2d.play("kick")
@@ -160,7 +165,15 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 
 func _on_animation_finished() -> void:
+	var juggling_2d = self.get_parent()
 	if animated_sprite_2d.animation == "kick":
+		self.global_position = juggling_2d.get_lane_global_position(active_lane)
 		animated_sprite_2d.play("idle")
 	if animated_sprite_2d.animation == "teleport":
 		animated_sprite_2d.play("idle")
+
+func _on_animation_changed() -> void:
+	if animated_sprite_2d.animation == "kick":
+		foot_sprite.show()
+	else:
+		foot_sprite.hide()

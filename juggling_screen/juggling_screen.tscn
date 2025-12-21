@@ -1,23 +1,17 @@
-[gd_scene load_steps=32 format=3 uid="uid://bm80fte4ltpp7"]
+[gd_scene load_steps=25 format=3 uid="uid://bm80fte4ltpp7"]
 
 [ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_csx3m"]
-[ext_resource type="Texture2D" uid="uid://cgmij3oi0ycm0" path="res://sprites/background/Background Castle .png" id="1_ejlqa"]
 [ext_resource type="Script" uid="uid://dd6hbnxgft0r0" path="res://juggling_screen/juggling_screen.gd" id="1_u0x2w"]
-[ext_resource type="Texture2D" uid="uid://ebrkxgcvmyp3" path="res://sprites/background/GandalfHardcore Background layers_layer 5.png" id="2_kagna"]
 [ext_resource type="Script" uid="uid://dqr821gtd5fvr" path="res://juggling_screen/juggling_2d.gd" id="2_u0x2w"]
-[ext_resource type="Texture2D" uid="uid://bxmvq3fr3sp5o" path="res://sprites/background/GandalfHardcore Background layers_layer 4.png" id="3_wmf2d"]
-[ext_resource type="Texture2D" uid="uid://bbhfhouhmdv5k" path="res://sprites/background/GandalfHardcore Background layers_layer 3.png" id="4_04hyf"]
-[ext_resource type="Texture2D" uid="uid://dtdalrw6rf8du" path="res://sprites/background/GandalfHardcore Background layers_layer 2.png" id="5_sy3ef"]
-[ext_resource type="Texture2D" uid="uid://ks7phl36djct" path="res://sprites/background/GandalfHardcore Background layers_layer 1.png" id="6_te0tn"]
 [ext_resource type="Texture2D" uid="uid://dwxcfl2xhx1q" path="res://sprites/background/ground.png" id="7_kagna"]
 [ext_resource type="Script" uid="uid://sbb80t0nt1mq" path="res://juggling_screen/player.gd" id="8_te0tn"]
-[ext_resource type="Texture2D" uid="uid://v8c5re1u05vm" path="res://sprites/player/player.png" id="8_wmf2d"]
 [ext_resource type="Texture2D" uid="uid://cjmmmbpkroqra" path="res://sprites/background/basic_bg.png" id="9_i31tj"]
 [ext_resource type="Texture2D" uid="uid://do0frxhxw2e1c" path="res://sprites/stirke_bar.png" id="10_m4th5"]
 [ext_resource type="Texture2D" uid="uid://by0nw4l6k8578" path="res://sprites/ui/lane.png" id="10_mdcjv"]
 [ext_resource type="Texture2D" uid="uid://bxt5d6ehypdfp" path="res://sprites/strike_marker.png" id="11_u0x2w"]
+[ext_resource type="Texture2D" uid="uid://den3gx8vrklbp" path="res://sprites/player/player_kick.png" id="11_vqhe1"]
+[ext_resource type="Texture2D" uid="uid://xk7ul5wrjye2" path="res://sprites/player/player_foot.png" id="13_vqhe1"]
 [ext_resource type="Texture2D" uid="uid://djwkestb1fkoo" path="res://sprites/ui/Arrow_Up_Key_Dark.png" id="14_lukk6"]
-[ext_resource type="Texture2D" uid="uid://5rjr13bb3jn1" path="res://sprites/player/player_spritesheet.png" id="16_8tn16"]
 [ext_resource type="Texture2D" uid="uid://c2qy245pgm8kd" path="res://sprites/player/player_idle_spritesheet.png" id="16_jnpes"]
 [ext_resource type="Script" uid="uid://dwons01prkgdm" path="res://juggling_screen/hud.gd" id="16_vqhe1"]
 [ext_resource type="Texture2D" uid="uid://bknck7l6ciwpb" path="res://sprites/ui/heart.png" id="17_lukk6"]
@@ -41,10 +35,6 @@ region = Rect2(59, 0, 59, 157)
 atlas = ExtResource("16_jnpes")
 region = Rect2(118, 0, 59, 157)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_no3jc"]
-atlas = ExtResource("16_8tn16")
-region = Rect2(218, 0, 109, 157)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_mdcjv"]
 animations = [{
 "frames": [{
@@ -63,7 +53,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_no3jc")
+"texture": ExtResource("11_vqhe1")
 }],
 "loop": false,
 "name": &"kick",
@@ -105,30 +95,6 @@ position = Vector2(960, 536)
 scale = Vector2(4, 4)
 
 [node name="Sprite2D" type="Sprite2D" parent="Juggling2D/Background"]
-visible = false
-texture = ExtResource("1_ejlqa")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Juggling2D/Background"]
-visible = false
-texture = ExtResource("2_kagna")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Juggling2D/Background"]
-visible = false
-texture = ExtResource("3_wmf2d")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Juggling2D/Background"]
-visible = false
-texture = ExtResource("4_04hyf")
-
-[node name="Sprite2D5" type="Sprite2D" parent="Juggling2D/Background"]
-visible = false
-texture = ExtResource("5_sy3ef")
-
-[node name="Sprite2D6" type="Sprite2D" parent="Juggling2D/Background"]
-visible = false
-texture = ExtResource("6_te0tn")
-
-[node name="Sprite2D7" type="Sprite2D" parent="Juggling2D/Background"]
 texture = ExtResource("9_i31tj")
 
 [node name="Ground" type="Node2D" parent="Juggling2D"]
@@ -144,42 +110,10 @@ shape = SubResource("RectangleShape2D_sy3ef")
 [node name="Ground" type="Sprite2D" parent="Juggling2D/Ground"]
 texture = ExtResource("7_kagna")
 
-[node name="Lanes" type="Node2D" parent="Juggling2D"]
-position = Vector2(960, 760)
-scale = Vector2(4, 4)
-
-[node name="Lane1" type="Node2D" parent="Juggling2D/Lanes"]
-position = Vector2(-72, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Juggling2D/Lanes/Lane1"]
-texture = ExtResource("10_mdcjv")
-
-[node name="Lane2" type="Node2D" parent="Juggling2D/Lanes"]
-position = Vector2(-24, 0)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Juggling2D/Lanes/Lane2"]
-texture = ExtResource("10_mdcjv")
-
-[node name="Lane3" type="Node2D" parent="Juggling2D/Lanes"]
-position = Vector2(24, 0)
-
-[node name="Sprite2D3" type="Sprite2D" parent="Juggling2D/Lanes/Lane3"]
-texture = ExtResource("10_mdcjv")
-
-[node name="Lane4" type="Node2D" parent="Juggling2D/Lanes"]
-position = Vector2(72, 0)
-
-[node name="Sprite2D4" type="Sprite2D" parent="Juggling2D/Lanes/Lane4"]
-texture = ExtResource("10_mdcjv")
-
 [node name="Player" type="Node2D" parent="Juggling2D"]
 position = Vector2(960, 760)
 scale = Vector2(4, 4)
 script = ExtResource("8_te0tn")
-
-[node name="Sprite2D" type="Sprite2D" parent="Juggling2D/Player"]
-visible = false
-texture = ExtResource("8_wmf2d")
 
 [node name="Area2D" type="Area2D" parent="Juggling2D/Player"]
 
@@ -209,6 +143,42 @@ position = Vector2(0, 9)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mdcjv")
 animation = &"kick"
+
+[node name="FootSprite" type="Sprite2D" parent="Juggling2D/Player"]
+visible = false
+z_index = 1
+texture_filter = 1
+position = Vector2(0, 9)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_vqhe1")
+
+[node name="Lanes" type="Node2D" parent="Juggling2D"]
+position = Vector2(960, 760)
+scale = Vector2(4, 4)
+
+[node name="Lane1" type="Node2D" parent="Juggling2D/Lanes"]
+position = Vector2(-72, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Juggling2D/Lanes/Lane1"]
+texture = ExtResource("10_mdcjv")
+
+[node name="Lane2" type="Node2D" parent="Juggling2D/Lanes"]
+position = Vector2(-24, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Juggling2D/Lanes/Lane2"]
+texture = ExtResource("10_mdcjv")
+
+[node name="Lane3" type="Node2D" parent="Juggling2D/Lanes"]
+position = Vector2(24, 0)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Juggling2D/Lanes/Lane3"]
+texture = ExtResource("10_mdcjv")
+
+[node name="Lane4" type="Node2D" parent="Juggling2D/Lanes"]
+position = Vector2(72, 0)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Juggling2D/Lanes/Lane4"]
+texture = ExtResource("10_mdcjv")
 
 [node name="Camera2D" type="Camera2D" parent="Juggling2D"]
 anchor_mode = 0
@@ -265,4 +235,5 @@ texture = ExtResource("17_lukk6")
 
 [connection signal="area_entered" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_entered"]
 [connection signal="area_exited" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_2d_area_exited"]
+[connection signal="animation_changed" from="Juggling2D/Player/AnimatedSprite2D" to="Juggling2D/Player" method="_on_animation_changed"]
 [connection signal="animation_finished" from="Juggling2D/Player/AnimatedSprite2D" to="Juggling2D/Player" method="_on_animation_finished"]
