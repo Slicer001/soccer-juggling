@@ -28,7 +28,7 @@ var active_lane := 0 : set = set_active_lane
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	animated_sprite_2d.play("idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -116,6 +116,11 @@ func auto_strike() -> void:
 	if not ball or not self.area_2d.overlaps_area(ball.area_2d):
 		#TODO: add character stun
 		return
+	#quickly slow down time
+	juggling_2d.slow_time(0.25)
+	#play the animation
+	animated_sprite_2d.frame = 0
+	animated_sprite_2d.play("kick")
 	#strike the ball
 	ball.strike(self, striking_force)
 
@@ -141,6 +146,7 @@ func set_active_lane(value: int) -> void:
 	active_lane = value
 	var juggling_2d = self.get_parent()
 	self.global_position = juggling_2d.get_lane_global_position(active_lane)
+	animated_sprite_2d.frame = 0
 	animated_sprite_2d.play("teleport")
 
 
@@ -154,6 +160,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 
 func _on_animation_finished() -> void:
-	print("ended ", animated_sprite_2d.animation)
+	if animated_sprite_2d.animation == "kick":
+		animated_sprite_2d.play("idle")
 	if animated_sprite_2d.animation == "teleport":
 		animated_sprite_2d.play("idle")

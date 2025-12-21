@@ -10,16 +10,18 @@ const STALL_BALL = preload("uid://crpcvvsw1iyfs")
 @onready var hud: HUD = $"../HUD"
 @onready var player: Player = $Player
 @onready var lanes := [$Lanes/Lane1, $Lanes/Lane2, $Lanes/Lane3, $Lanes/Lane4]
+@onready var camera_2d: Camera2D = $Camera2D
 
 var score := 0 : set = set_score
 
 var physics_speed := 1.0
+var physics_speed_tween: Tween = null
 
 var number_of_strikes := 0 : set = set_number_of_strikes
 var streak := 0
 var balls := []
 
-var ball_timer_length := 2.5 #seconds between ball spawns
+var ball_timer_length := 2.0 #seconds between ball spawns
 var ball_timer: float = ball_timer_length
 
 func _ready() -> void:
@@ -30,7 +32,6 @@ func _physics_process(delta: float) -> void:
 	if ball_timer <= 0:
 		add_ball()
 		ball_timer = ball_timer_length * pow(0.99, streak)
-		print(ball_timer)
 
 # Starts a game.
 func start_game() -> void:
@@ -48,7 +49,6 @@ func add_ball() -> void:
 		ball_type = STRONG_BALL
 	if randf() < 0.0025 * number_of_strikes and number_of_strikes >= 40:
 		ball_type = STALL_BALL
-	print(number_of_strikes, " ", ball_type.resource_name)
 	#create ball with random lane
 	var lane = randi_range(0, lanes.size()-1)
 	var new_ball = ball_type.instantiate()
@@ -59,8 +59,6 @@ func add_ball() -> void:
 # Updates the score.
 func increase_score(points) -> void:
 	points *= streak #increase for current streak
-	points *= (3.0 / ball_timer_length) #increase for ball speed
-	#increase for player kick speed
 	score += int(points)
 
 # Gets called when a ball hits the ground.
@@ -81,6 +79,22 @@ func damage_player() -> void:
 	if hud.health <= 0:
 		#run death screen
 		pass
+
+# Slows down the time for the given duration.
+func slow_time(time: float) -> void:
+	physics_speed = 0.05
+	if physics_speed_tween:
+		physics_speed_tween.kill()
+		physics_speed_tween = null
+	physics_speed_tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	physics_speed_tween.tween_property(self, "physics_speed", 0.05, time * 0.5)
+	physics_speed_tween.tween_property(self, "physics_speed", 1.0, time * 0.5)
+
+# Focuses the camera on the ball as it gets hit.
+func focus_camera():
+	pass
+
+
 
 func set_number_of_strikes(value: int) -> void:
 	number_of_strikes = value

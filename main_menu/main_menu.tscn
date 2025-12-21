@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwh8ejn5aai44"]
+
+[ext_resource type="Theme" uid="uid://cyey10c572y6w" path="res://main_menu/main_menu_theme.tres" id="1_oa53l"]
+[ext_resource type="Script" uid="uid://488yxhukvhlh" path="res://main_menu/main_menu.gd" id="2_3shxk"]
+[ext_resource type="Texture2D" uid="uid://blssq1mmo3lwr" path="res://sprites/ui/window.png" id="2_d3a7t"]
+
+[node name="MainMenu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oa53l")
+script = ExtResource("2_3shxk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d3a7t")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 192.0
+offset_bottom = 330.0
+grow_horizontal = 2
+text = "Kaidou Strike"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -102.0
+offset_right = 192.0
+offset_bottom = 294.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TutorialButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(384, 96)
+layout_mode = 2
+disabled = true
+text = "Tutorial"
+
+[node name="FreePlayButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(384, 96)
+layout_mode = 2
+text = "Free Play
+"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(384, 96)
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(384, 96)
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/FreePlayButton" to="." method="_on_free_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

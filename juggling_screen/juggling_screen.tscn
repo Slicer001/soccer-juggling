@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bm80fte4ltpp7"]
+[gd_scene load_steps=32 format=3 uid="uid://bm80fte4ltpp7"]
 
 [ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_csx3m"]
 [ext_resource type="Texture2D" uid="uid://cgmij3oi0ycm0" path="res://sprites/background/Background Castle .png" id="1_ejlqa"]
@@ -12,11 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://dwxcfl2xhx1q" path="res://sprites/background/ground.png" id="7_kagna"]
 [ext_resource type="Script" uid="uid://sbb80t0nt1mq" path="res://juggling_screen/player.gd" id="8_te0tn"]
 [ext_resource type="Texture2D" uid="uid://v8c5re1u05vm" path="res://sprites/player/player.png" id="8_wmf2d"]
+[ext_resource type="Texture2D" uid="uid://cjmmmbpkroqra" path="res://sprites/background/basic_bg.png" id="9_i31tj"]
 [ext_resource type="Texture2D" uid="uid://do0frxhxw2e1c" path="res://sprites/stirke_bar.png" id="10_m4th5"]
 [ext_resource type="Texture2D" uid="uid://by0nw4l6k8578" path="res://sprites/ui/lane.png" id="10_mdcjv"]
 [ext_resource type="Texture2D" uid="uid://bxt5d6ehypdfp" path="res://sprites/strike_marker.png" id="11_u0x2w"]
 [ext_resource type="Texture2D" uid="uid://djwkestb1fkoo" path="res://sprites/ui/Arrow_Up_Key_Dark.png" id="14_lukk6"]
 [ext_resource type="Texture2D" uid="uid://5rjr13bb3jn1" path="res://sprites/player/player_spritesheet.png" id="16_8tn16"]
+[ext_resource type="Texture2D" uid="uid://c2qy245pgm8kd" path="res://sprites/player/player_idle_spritesheet.png" id="16_jnpes"]
 [ext_resource type="Script" uid="uid://dwons01prkgdm" path="res://juggling_screen/hud.gd" id="16_vqhe1"]
 [ext_resource type="Texture2D" uid="uid://bknck7l6ciwpb" path="res://sprites/ui/heart.png" id="17_lukk6"]
 [ext_resource type="Texture2D" uid="uid://7f0ha2eehvgi" path="res://sprites/effects/player_teleport_fx.png" id="17_vlbxp"]
@@ -27,17 +29,17 @@ size = Vector2(480, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmf2d"]
 size = Vector2(32, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vlbxp"]
-atlas = ExtResource("16_8tn16")
-region = Rect2(0, 0, 109, 157)
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbirw"]
+atlas = ExtResource("16_jnpes")
+region = Rect2(0, 0, 59, 157)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jnpes"]
-atlas = ExtResource("16_8tn16")
-region = Rect2(0, 0, 109, 157)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pneyo"]
+atlas = ExtResource("16_jnpes")
+region = Rect2(59, 0, 59, 157)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i31tj"]
-atlas = ExtResource("16_8tn16")
-region = Rect2(109, 0, 109, 157)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf5db"]
+atlas = ExtResource("16_jnpes")
+region = Rect2(118, 0, 59, 157)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_no3jc"]
 atlas = ExtResource("16_8tn16")
@@ -47,7 +49,13 @@ region = Rect2(218, 0, 109, 157)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vlbxp")
+"texture": SubResource("AtlasTexture_tbirw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pneyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf5db")
 }],
 "loop": true,
 "name": &"idle",
@@ -55,17 +63,11 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jnpes")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i31tj")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_no3jc")
 }],
 "loop": false,
 "name": &"kick",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -99,26 +101,35 @@ script = ExtResource("2_u0x2w")
 
 [node name="Background" type="Node2D" parent="Juggling2D"]
 texture_filter = 1
-position = Vector2(960, 540)
+position = Vector2(960, 536)
 scale = Vector2(4, 4)
 
 [node name="Sprite2D" type="Sprite2D" parent="Juggling2D/Background"]
+visible = false
 texture = ExtResource("1_ejlqa")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Juggling2D/Background"]
+visible = false
 texture = ExtResource("2_kagna")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Juggling2D/Background"]
+visible = false
 texture = ExtResource("3_wmf2d")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Juggling2D/Background"]
+visible = false
 texture = ExtResource("4_04hyf")
 
 [node name="Sprite2D5" type="Sprite2D" parent="Juggling2D/Background"]
+visible = false
 texture = ExtResource("5_sy3ef")
 
 [node name="Sprite2D6" type="Sprite2D" parent="Juggling2D/Background"]
+visible = false
 texture = ExtResource("6_te0tn")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Juggling2D/Background"]
+texture = ExtResource("9_i31tj")
 
 [node name="Ground" type="Node2D" parent="Juggling2D"]
 position = Vector2(960, 540)
@@ -197,7 +208,7 @@ texture = ExtResource("14_lukk6")
 position = Vector2(0, 9)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mdcjv")
-animation = &"idle"
+animation = &"kick"
 
 [node name="Camera2D" type="Camera2D" parent="Juggling2D"]
 anchor_mode = 0

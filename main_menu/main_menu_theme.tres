@@ -1,0 +1,45 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cyey10c572y6w"]
+
+[ext_resource type="Texture2D" uid="uid://dbwnptjvbi4ar" path="res://sprites/ui/bttn_2.png" id="1_10r7d"]
+[ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_jb541"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_10r7d"]
+texture = ExtResource("1_10r7d")
+region_rect = Rect2(0, 26, 67, 28)
+modulate_color = Color(0.25, 0.25, 0.25, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ipxn5"]
+load_path = "res://.godot/imported/bttn_2.png-2d57158a59d12c86569981cfcdf4f3c9.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ckfop"]
+texture = SubResource("CompressedTexture2D_ipxn5")
+region_rect = Rect2(0, 26, 67, 28)
+modulate_color = Color(1.353256, 1.353256, 1.353256, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_go8lj"]
+load_path = "res://.godot/imported/bttn_2.png-2d57158a59d12c86569981cfcdf4f3c9.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j2f8s"]
+texture = SubResource("CompressedTexture2D_go8lj")
+region_rect = Rect2(0, 26, 67, 28)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_22g3o"]
+load_path = "res://.godot/imported/bttn_2.png-2d57158a59d12c86569981cfcdf4f3c9.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d022v"]
+texture = SubResource("CompressedTexture2D_22g3o")
+region_rect = Rect2(0, 0, 67, 26)
+
+[sub_resource type="FontVariation" id="FontVariation_10r7d"]
+base_font = ExtResource("1_jb541")
+variation_transform = Transform2D(1, 0.5, 0, 1.5, 0, 0)
+
+[resource]
+default_font = ExtResource("1_jb541")
+default_font_size = 64
+Button/styles/disabled = SubResource("StyleBoxTexture_10r7d")
+Button/styles/hover = SubResource("StyleBoxTexture_ckfop")
+Button/styles/normal = SubResource("StyleBoxTexture_j2f8s")
+Button/styles/pressed = SubResource("StyleBoxTexture_d022v")
+Label/font_sizes/font_size = 128
+Label/fonts/font = SubResource("FontVariation_10r7d")
