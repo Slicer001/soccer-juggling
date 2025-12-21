@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0o614tt0axj3"]
+
+[ext_resource type="Script" uid="uid://dnik8yp8sxxut" path="res://juggling_screen/ball_spawner.gd" id="1_34pmq"]
+[ext_resource type="Texture2D" uid="uid://dhpv5261mh3p5" path="res://sprites/balls/ball.png" id="2_xq6h0"]
+
+[node name="BallSpawner" type="Node2D"]
+script = ExtResource("1_34pmq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xq6h0")

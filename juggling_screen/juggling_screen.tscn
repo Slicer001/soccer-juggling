@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bm80fte4ltpp7"]
+[gd_scene load_steps=22 format=3 uid="uid://bm80fte4ltpp7"]
 
 [ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_csx3m"]
 [ext_resource type="Texture2D" uid="uid://cgmij3oi0ycm0" path="res://sprites/background/Background Castle .png" id="1_ejlqa"]
@@ -15,13 +15,21 @@
 [ext_resource type="Texture2D" uid="uid://do0frxhxw2e1c" path="res://sprites/stirke_bar.png" id="10_m4th5"]
 [ext_resource type="Texture2D" uid="uid://bxt5d6ehypdfp" path="res://sprites/strike_marker.png" id="11_u0x2w"]
 [ext_resource type="Texture2D" uid="uid://djwkestb1fkoo" path="res://sprites/ui/Arrow_Up_Key_Dark.png" id="14_lukk6"]
-[ext_resource type="PackedScene" uid="uid://dbg6ayu22n5tt" path="res://juggling_screen/ball.tscn" id="14_vqhe1"]
+[ext_resource type="Script" uid="uid://dwons01prkgdm" path="res://juggling_screen/hud.gd" id="16_vqhe1"]
+[ext_resource type="Texture2D" uid="uid://bknck7l6ciwpb" path="res://sprites/ui/heart.png" id="17_lukk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sy3ef"]
 size = Vector2(480, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmf2d"]
 size = Vector2(32, 96)
+
+[sub_resource type="Environment" id="Environment_vqhe1"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 0.8
+glow_enabled = true
+adjustment_enabled = true
 
 [sub_resource type="Theme" id="Theme_fd8gr"]
 default_font = ExtResource("1_csx3m")
@@ -101,13 +109,14 @@ position = Vector2(0, -64)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("14_lukk6")
 
-[node name="Ball" parent="Juggling2D" instance=ExtResource("14_vqhe1")]
-position = Vector2(960, 256)
-
 [node name="Camera2D" type="Camera2D" parent="Juggling2D"]
 anchor_mode = 0
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Juggling2D"]
+environment = SubResource("Environment_vqhe1")
+
 [node name="HUD" type="Control" parent="."]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,9 +124,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_fd8gr")
+script = ExtResource("16_vqhe1")
 
 [node name="Score" type="Label" parent="HUD"]
-texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -127,6 +136,28 @@ offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
 text = "Score: 0"
+
+[node name="HealthContainer" type="HBoxContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 120.0
+offset_bottom = 48.0
+
+[node name="Heart1" type="TextureRect" parent="HUD/HealthContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("17_lukk6")
+
+[node name="Heart2" type="TextureRect" parent="HUD/HealthContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("17_lukk6")
+
+[node name="Heart3" type="TextureRect" parent="HUD/HealthContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("17_lukk6")
 
 [connection signal="area_entered" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_entered"]
 [connection signal="area_exited" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_2d_area_exited"]

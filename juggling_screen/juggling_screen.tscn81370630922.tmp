@@ -1,0 +1,163 @@
+[gd_scene load_steps=22 format=3 uid="uid://bm80fte4ltpp7"]
+
+[ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_csx3m"]
+[ext_resource type="Texture2D" uid="uid://cgmij3oi0ycm0" path="res://sprites/background/Background Castle .png" id="1_ejlqa"]
+[ext_resource type="Script" uid="uid://dd6hbnxgft0r0" path="res://juggling_screen/juggling_screen.gd" id="1_u0x2w"]
+[ext_resource type="Texture2D" uid="uid://ebrkxgcvmyp3" path="res://sprites/background/GandalfHardcore Background layers_layer 5.png" id="2_kagna"]
+[ext_resource type="Script" uid="uid://dqr821gtd5fvr" path="res://juggling_screen/juggling_2d.gd" id="2_u0x2w"]
+[ext_resource type="Texture2D" uid="uid://bxmvq3fr3sp5o" path="res://sprites/background/GandalfHardcore Background layers_layer 4.png" id="3_wmf2d"]
+[ext_resource type="Texture2D" uid="uid://bbhfhouhmdv5k" path="res://sprites/background/GandalfHardcore Background layers_layer 3.png" id="4_04hyf"]
+[ext_resource type="Texture2D" uid="uid://dtdalrw6rf8du" path="res://sprites/background/GandalfHardcore Background layers_layer 2.png" id="5_sy3ef"]
+[ext_resource type="Texture2D" uid="uid://ks7phl36djct" path="res://sprites/background/GandalfHardcore Background layers_layer 1.png" id="6_te0tn"]
+[ext_resource type="Texture2D" uid="uid://dwxcfl2xhx1q" path="res://sprites/background/ground.png" id="7_kagna"]
+[ext_resource type="Script" uid="uid://sbb80t0nt1mq" path="res://juggling_screen/player.gd" id="8_te0tn"]
+[ext_resource type="Texture2D" uid="uid://v8c5re1u05vm" path="res://sprites/player/player.png" id="8_wmf2d"]
+[ext_resource type="Texture2D" uid="uid://do0frxhxw2e1c" path="res://sprites/stirke_bar.png" id="10_m4th5"]
+[ext_resource type="Texture2D" uid="uid://bxt5d6ehypdfp" path="res://sprites/strike_marker.png" id="11_u0x2w"]
+[ext_resource type="Texture2D" uid="uid://djwkestb1fkoo" path="res://sprites/ui/Arrow_Up_Key_Dark.png" id="14_lukk6"]
+[ext_resource type="Script" uid="uid://dwons01prkgdm" path="res://juggling_screen/hud.gd" id="16_vqhe1"]
+[ext_resource type="Texture2D" uid="uid://bknck7l6ciwpb" path="res://sprites/ui/heart.png" id="17_lukk6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sy3ef"]
+size = Vector2(480, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmf2d"]
+size = Vector2(32, 96)
+
+[sub_resource type="Environment" id="Environment_vqhe1"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 0.8
+glow_enabled = true
+adjustment_enabled = true
+
+[sub_resource type="Theme" id="Theme_fd8gr"]
+default_font = ExtResource("1_csx3m")
+default_font_size = 128
+
+[node name="JugglingScreen" type="Node"]
+script = ExtResource("1_u0x2w")
+
+[node name="Juggling2D" type="Node2D" parent="."]
+texture_filter = 1
+script = ExtResource("2_u0x2w")
+
+[node name="Background" type="Node2D" parent="Juggling2D"]
+texture_filter = 1
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Juggling2D/Background"]
+texture = ExtResource("1_ejlqa")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Juggling2D/Background"]
+texture = ExtResource("2_kagna")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Juggling2D/Background"]
+texture = ExtResource("3_wmf2d")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Juggling2D/Background"]
+texture = ExtResource("4_04hyf")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Juggling2D/Background"]
+texture = ExtResource("5_sy3ef")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Juggling2D/Background"]
+texture = ExtResource("6_te0tn")
+
+[node name="Ground" type="Node2D" parent="Juggling2D"]
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+
+[node name="Area2D" type="Area2D" parent="Juggling2D/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Juggling2D/Ground/Area2D"]
+position = Vector2(0, 119)
+shape = SubResource("RectangleShape2D_sy3ef")
+
+[node name="Ground" type="Sprite2D" parent="Juggling2D/Ground"]
+texture = ExtResource("7_kagna")
+
+[node name="Player" type="Node2D" parent="Juggling2D"]
+position = Vector2(960, 760)
+scale = Vector2(4, 4)
+script = ExtResource("8_te0tn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Juggling2D/Player"]
+texture = ExtResource("8_wmf2d")
+
+[node name="Area2D" type="Area2D" parent="Juggling2D/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Juggling2D/Player/Area2D"]
+shape = SubResource("RectangleShape2D_wmf2d")
+
+[node name="StrikeQTE" type="Node2D" parent="Juggling2D/Player"]
+visible = false
+position = Vector2(-32, 0)
+scale = Vector2(2, 2)
+
+[node name="StrikeBar" type="Sprite2D" parent="Juggling2D/Player/StrikeQTE"]
+texture = ExtResource("10_m4th5")
+
+[node name="StrikeMarker" type="Sprite2D" parent="Juggling2D/Player/StrikeQTE"]
+position = Vector2(0, 14.5)
+texture = ExtResource("11_u0x2w")
+
+[node name="StrikeHint" type="Sprite2D" parent="Juggling2D/Player"]
+visible = false
+position = Vector2(0, -64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_lukk6")
+
+[node name="Camera2D" type="Camera2D" parent="Juggling2D"]
+anchor_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Juggling2D"]
+environment = SubResource("Environment_vqhe1")
+
+[node name="HUD" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fd8gr")
+script = ExtResource("16_vqhe1")
+
+[node name="Score" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+text = "Score: 0"
+
+[node name="HealthContainer" type="HBoxContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 120.0
+offset_bottom = 48.0
+
+[node name="Heart1" type="TextureRect" parent="HUD/HealthContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("17_lukk6")
+
+[node name="Heart2" type="TextureRect" parent="HUD/HealthContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("17_lukk6")
+
+[node name="Heart3" type="TextureRect" parent="HUD/HealthContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("17_lukk6")
+
+[connection signal="area_entered" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_entered"]
+[connection signal="area_exited" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_2d_area_exited"]
