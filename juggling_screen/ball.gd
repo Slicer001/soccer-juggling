@@ -8,20 +8,28 @@ const WARNING_THRESHOLD := 5
 @onready var outline: Sprite2D = $Outline
 @onready var warning: Node2D = $Warning
 
+var juggling_2d = null
+
 var remaining_strikes := 1
 var score_value := 100
 
 var moving := true
 var velocity := Vector2.ZERO
 
+var active_lane = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
+func setup(_juggling_2d: Juggling2D, _active_lane: int) -> void:
+	self.juggling_2d = _juggling_2d
+	self.active_lane = _active_lane
+	self.global_position = Vector2(juggling_2d.get_lane_global_position(active_lane).x, 256.0)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var juggling_2d = self.get_parent()
 	if moving:
 		#calculate velocity
 		velocity += GRAVITY * delta * juggling_2d.physics_speed
@@ -42,7 +50,6 @@ func strike(player: Player, striking_force: float) -> void:
 		take_hit(player, striking_force)
 	if remaining_strikes <= 0:
 		#remove self from list
-		var juggling_2d = self.get_parent()
 		juggling_2d.balls.erase(self)
 		#remove ball from player
 		juggling_2d.player.focused_ball = null
@@ -76,7 +83,6 @@ func get_points(striking_force: float) -> int:
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent().name == "Ground":
 		#set current streak to 0
-		var juggling_2d = self.get_parent()
 		juggling_2d.damage_player()
 		#remove this ball from the equation
 		juggling_2d.balls.erase(self)

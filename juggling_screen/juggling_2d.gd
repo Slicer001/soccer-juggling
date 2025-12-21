@@ -1,4 +1,5 @@
 extends Node2D
+class_name Juggling2D
 
 const BALL = preload("uid://dbg6ayu22n5tt")
 const HARD_BALL = preload("uid://dyu8opqkhoqx0")
@@ -7,6 +8,7 @@ const TELEPORT_BALL = preload("uid://bqqs4077a8wyd")
 
 @onready var hud: HUD = $"../HUD"
 @onready var player: Player = $Player
+@onready var lanes := [$Lanes/Lane1, $Lanes/Lane2, $Lanes/Lane3, $Lanes/Lane4]
 
 var score := 0 : set = set_score
 
@@ -34,13 +36,16 @@ func start_game() -> void:
 
 # Creates a new ball. 
 func add_ball() -> void:
+	#choose ball type
 	var ball_type = BALL
 	if randf() < 0.25:
 		ball_type = HARD_BALL
 	if randf() < 0.1:
 		ball_type = TELEPORT_BALL
+	#create ball with random lane
+	var lane = randi_range(0, lanes.size()-1)
 	var new_ball = ball_type.instantiate()
-	new_ball.position = Vector2((1920 * 0.5)*randf() + 1920*0.25, 256.0)
+	new_ball.setup(self, lane)
 	self.add_child(new_ball)
 	balls.append(new_ball)
 
@@ -102,3 +107,9 @@ func set_physics_speed(value: float) -> void:
 func set_score(value: int) -> void:
 	score = value
 	hud.update_score(score)
+
+func get_lane_global_position(lane: int) -> Vector2:
+	return lanes[lane].global_position
+
+func get_next_lane(current_lane: int, direction: int) -> int:
+	return (current_lane + lanes.size() + direction) % lanes.size()

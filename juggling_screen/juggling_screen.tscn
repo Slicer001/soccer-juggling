@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bm80fte4ltpp7"]
+[gd_scene load_steps=23 format=3 uid="uid://bm80fte4ltpp7"]
 
 [ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_csx3m"]
 [ext_resource type="Texture2D" uid="uid://cgmij3oi0ycm0" path="res://sprites/background/Background Castle .png" id="1_ejlqa"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://sbb80t0nt1mq" path="res://juggling_screen/player.gd" id="8_te0tn"]
 [ext_resource type="Texture2D" uid="uid://v8c5re1u05vm" path="res://sprites/player/player.png" id="8_wmf2d"]
 [ext_resource type="Texture2D" uid="uid://do0frxhxw2e1c" path="res://sprites/stirke_bar.png" id="10_m4th5"]
+[ext_resource type="Texture2D" uid="uid://by0nw4l6k8578" path="res://sprites/ui/lane.png" id="10_mdcjv"]
 [ext_resource type="Texture2D" uid="uid://bxt5d6ehypdfp" path="res://sprites/strike_marker.png" id="11_u0x2w"]
 [ext_resource type="Texture2D" uid="uid://djwkestb1fkoo" path="res://sprites/ui/Arrow_Up_Key_Dark.png" id="14_lukk6"]
 [ext_resource type="Script" uid="uid://dwons01prkgdm" path="res://juggling_screen/hud.gd" id="16_vqhe1"]
@@ -27,8 +28,8 @@ size = Vector2(32, 96)
 [sub_resource type="Environment" id="Environment_vqhe1"]
 background_mode = 3
 tonemap_mode = 3
-tonemap_exposure = 0.8
 glow_enabled = true
+glow_strength = 1.5
 adjustment_enabled = true
 
 [sub_resource type="Theme" id="Theme_fd8gr"]
@@ -77,6 +78,34 @@ shape = SubResource("RectangleShape2D_sy3ef")
 
 [node name="Ground" type="Sprite2D" parent="Juggling2D/Ground"]
 texture = ExtResource("7_kagna")
+
+[node name="Lanes" type="Node2D" parent="Juggling2D"]
+position = Vector2(960, 760)
+scale = Vector2(4, 4)
+
+[node name="Lane1" type="Node2D" parent="Juggling2D/Lanes"]
+position = Vector2(-72, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Juggling2D/Lanes/Lane1"]
+texture = ExtResource("10_mdcjv")
+
+[node name="Lane2" type="Node2D" parent="Juggling2D/Lanes"]
+position = Vector2(-24, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Juggling2D/Lanes/Lane2"]
+texture = ExtResource("10_mdcjv")
+
+[node name="Lane3" type="Node2D" parent="Juggling2D/Lanes"]
+position = Vector2(24, 0)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Juggling2D/Lanes/Lane3"]
+texture = ExtResource("10_mdcjv")
+
+[node name="Lane4" type="Node2D" parent="Juggling2D/Lanes"]
+position = Vector2(72, 0)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Juggling2D/Lanes/Lane4"]
+texture = ExtResource("10_mdcjv")
 
 [node name="Player" type="Node2D" parent="Juggling2D"]
 position = Vector2(960, 760)
@@ -135,6 +164,7 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
+pivot_offset = Vector2(182, 69)
 text = "Score: 0"
 
 [node name="HealthContainer" type="HBoxContainer" parent="HUD"]
