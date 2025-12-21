@@ -1,7 +1,7 @@
 extends Node2D
 class_name Ball
 
-const GRAVITY := Vector2(0, 5.0) # Vector2(0, 9.8)
+const GRAVITY := Vector2(0, 9.8) # Vector2(0, 9.8)
 const WARNING_THRESHOLD := 5
 
 @onready var area_2d: Area2D = $Area2D
@@ -31,6 +31,8 @@ func _physics_process(delta: float) -> void:
 	if moving:
 		#calculate velocity
 		velocity += GRAVITY * delta * juggling_2d.physics_speed
+		#set maximum velocity
+		velocity.y = min(velocity.y, 10)
 		#move down by that amount
 		self.position += velocity * juggling_2d.physics_speed
 	#if falling quickly, show warning

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bm80fte4ltpp7"]
+[gd_scene load_steps=30 format=3 uid="uid://bm80fte4ltpp7"]
 
 [ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_csx3m"]
 [ext_resource type="Texture2D" uid="uid://cgmij3oi0ycm0" path="res://sprites/background/Background Castle .png" id="1_ejlqa"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://5rjr13bb3jn1" path="res://sprites/player/player_spritesheet.png" id="16_8tn16"]
 [ext_resource type="Script" uid="uid://dwons01prkgdm" path="res://juggling_screen/hud.gd" id="16_vqhe1"]
 [ext_resource type="Texture2D" uid="uid://bknck7l6ciwpb" path="res://sprites/ui/heart.png" id="17_lukk6"]
+[ext_resource type="Texture2D" uid="uid://7f0ha2eehvgi" path="res://sprites/effects/player_teleport_fx.png" id="17_vlbxp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sy3ef"]
 size = Vector2(480, 32)
@@ -62,9 +63,17 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_no3jc")
 }],
-"loop": true,
+"loop": false,
 "name": &"kick",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_vlbxp")
+}],
+"loop": false,
+"name": &"teleport",
+"speed": 10.0
 }]
 
 [sub_resource type="Environment" id="Environment_vqhe1"]
@@ -245,3 +254,4 @@ texture = ExtResource("17_lukk6")
 
 [connection signal="area_entered" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_entered"]
 [connection signal="area_exited" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_2d_area_exited"]
+[connection signal="animation_finished" from="Juggling2D/Player/AnimatedSprite2D" to="Juggling2D/Player" method="_on_animation_finished"]

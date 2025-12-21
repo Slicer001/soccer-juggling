@@ -2,6 +2,7 @@ extends Node2D
 class_name Player
 
 @onready var area_2d: Area2D = $Area2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 #strike related stuff
 @onready var strike_qte: Node2D = $StrikeQTE
@@ -23,7 +24,7 @@ var invincible := false : set = set_invincible
 var invincible_timer := 0.0
 var low_alpha := false
 
-var active_lane := 0
+var active_lane := 0 : set = set_active_lane
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -102,8 +103,6 @@ func activate_strike() -> void:
 	focused_ball.strike(self, striking_force)
 	#no longer striking
 	striking = false
-	#increase strike count
-	juggling_2d.number_of_strikes += 1
 
 func auto_strike() -> void:
 	var juggling_2d = self.get_parent()
@@ -119,8 +118,6 @@ func auto_strike() -> void:
 		return
 	#strike the ball
 	ball.strike(self, striking_force)
-	#increase strike count
-	juggling_2d.number_of_strikes += 1
 
 
 
@@ -131,6 +128,20 @@ func set_focused_ball(value: Ball) -> void:
 	if focused_ball:
 		focused_ball.outline.show()
 
+func set_invincible(value: bool) -> void:
+	invincible = value
+	#reset invincibility in one seconds
+	if invincible:
+		var invincible_tween = get_tree().create_tween()
+		invincible_tween.tween_callback(self.set_invincible.bind(false)).set_delay(INVINCIBILITY_TIME)
+	else:
+		self.modulate = Color(1, 1, 1, 1)
+
+func set_active_lane(value: int) -> void:
+	active_lane = value
+	var juggling_2d = self.get_parent()
+	self.global_position = juggling_2d.get_lane_global_position(active_lane)
+	animated_sprite_2d.play("teleport")
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -141,11 +152,8 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.get_parent() == focused_ball:
 		strike_hint.hide()
 
-func set_invincible(value: bool) -> void:
-	invincible = value
-	#reset invincibility in one seconds
-	if invincible:
-		var invincible_tween = get_tree().create_tween()
-		invincible_tween.tween_callback(self.set_invincible.bind(false)).set_delay(INVINCIBILITY_TIME)
-	else:
-		self.modulate = Color(1, 1, 1, 1)
+
+func _on_animation_finished() -> void:
+	print("ended ", animated_sprite_2d.animation)
+	if animated_sprite_2d.animation == "teleport":
+		animated_sprite_2d.play("idle")

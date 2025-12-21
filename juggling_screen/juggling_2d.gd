@@ -48,6 +48,7 @@ func add_ball() -> void:
 		ball_type = STRONG_BALL
 	if randf() < 0.0025 * number_of_strikes and number_of_strikes >= 40:
 		ball_type = STALL_BALL
+	print(number_of_strikes, " ", ball_type.resource_name)
 	#create ball with random lane
 	var lane = randi_range(0, lanes.size()-1)
 	var new_ball = ball_type.instantiate()
