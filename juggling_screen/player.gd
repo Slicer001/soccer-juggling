@@ -23,6 +23,8 @@ var invincible := false : set = set_invincible
 var invincible_timer := 0.0
 var low_alpha := false
 
+var active_lane := 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -31,8 +33,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	#snap to ball if focused
-	if focused_ball:
-		self.global_position.x = focused_ball.global_position.x
+	#if focused_ball:
+		#self.global_position.x = focused_ball.global_position.x
+	#snap to active lane
+	var juggling_2d = self.get_parent()
+	if active_lane != -1:
+		self.global_position = juggling_2d.get_lane_global_position(active_lane)
 	#blink if invincible
 	if invincible:
 		invincible_timer -= delta
@@ -45,11 +51,15 @@ func _input(event: InputEvent) -> void:
 	var juggling_2d = self.get_parent()
 	#switching focused balls
 	if event.is_action_pressed("ui_left") and not striking:
-		var next_ball = juggling_2d.get_next_ball_left(self.global_position)
-		focused_ball = next_ball if next_ball else focused_ball
+		#var next_ball = juggling_2d.get_next_ball_left(self.global_position)
+		#focused_ball = next_ball if next_ball else focused_ball
+		active_lane = juggling_2d.get_next_lane(active_lane, -1)
+		pass
 	if event.is_action_pressed("ui_right") and not striking:
-		var next_ball = juggling_2d.get_next_ball_right(self.global_position)
-		focused_ball = next_ball if next_ball else focused_ball
+		#var next_ball = juggling_2d.get_next_ball_right(self.global_position)
+		#focused_ball = next_ball if next_ball else focused_ball
+		active_lane = juggling_2d.get_next_lane(active_lane, +1)
+		pass
 	#begin striking ball
 	if focused_ball and event.is_action_pressed("ui_up"):
 		if area_2d.overlaps_area(focused_ball.area_2d):
@@ -59,6 +69,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("ui_up"):
 		if focused_ball and striking:
 			self.activate_strike()
+
+
 
 func begin_strike() -> void:
 	#slow down time
@@ -123,6 +135,7 @@ func set_focused_ball(value: Ball) -> void:
 	focused_ball = value
 	if focused_ball:
 		focused_ball.outline.show()
+
 
 
 func _on_area_entered(area: Area2D) -> void:
