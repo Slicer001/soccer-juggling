@@ -22,10 +22,10 @@ var streak := 0
 var balls := []
 
 var ball_timer_length := 2.0 #seconds between ball spawns
-var ball_timer: float = ball_timer_length
+var ball_timer: float = ball_timer_length * 1000
 
 func _ready() -> void:
-	start_game()
+	player.active_lane = 0
 
 func _physics_process(delta: float) -> void:
 	ball_timer -= delta * physics_speed
@@ -35,7 +35,6 @@ func _physics_process(delta: float) -> void:
 
 # Starts a game.
 func start_game() -> void:
-	player.active_lane = 0
 	ball_timer = ball_timer_length
 
 # Creates a new ball. 
