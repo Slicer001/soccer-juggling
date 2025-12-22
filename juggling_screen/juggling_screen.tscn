@@ -1,9 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://bm80fte4ltpp7"]
+[gd_scene load_steps=36 format=3 uid="uid://bm80fte4ltpp7"]
 
 [ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_csx3m"]
 [ext_resource type="Script" uid="uid://dd6hbnxgft0r0" path="res://juggling_screen/juggling_screen.gd" id="1_u0x2w"]
 [ext_resource type="Script" uid="uid://dqr821gtd5fvr" path="res://juggling_screen/juggling_2d.gd" id="2_u0x2w"]
-[ext_resource type="Texture2D" uid="uid://dwxcfl2xhx1q" path="res://sprites/background/ground.png" id="7_kagna"]
+[ext_resource type="Texture2D" uid="uid://duwl8bdjwbfk1" path="res://sprites/background/grass.png" id="4_vqhe1"]
 [ext_resource type="Script" uid="uid://sbb80t0nt1mq" path="res://juggling_screen/player.gd" id="8_te0tn"]
 [ext_resource type="Texture2D" uid="uid://cjmmmbpkroqra" path="res://sprites/background/basic_bg.png" id="9_i31tj"]
 [ext_resource type="Texture2D" uid="uid://do0frxhxw2e1c" path="res://sprites/stirke_bar.png" id="10_m4th5"]
@@ -14,8 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://djwkestb1fkoo" path="res://sprites/ui/Arrow_Up_Key_Dark.png" id="14_lukk6"]
 [ext_resource type="Texture2D" uid="uid://c2qy245pgm8kd" path="res://sprites/player/player_idle_spritesheet.png" id="16_jnpes"]
 [ext_resource type="Script" uid="uid://dwons01prkgdm" path="res://juggling_screen/hud.gd" id="16_vqhe1"]
+[ext_resource type="Texture2D" uid="uid://bkjl45em47qu5" path="res://sprites/ui/begin.png" id="17_8tn16"]
 [ext_resource type="Texture2D" uid="uid://bknck7l6ciwpb" path="res://sprites/ui/heart.png" id="17_lukk6"]
+[ext_resource type="AudioStream" uid="uid://qbljl6vjjill" path="res://audio/music/Kaidou Strike Instrumental.mp3" id="17_mdcjv"]
 [ext_resource type="Texture2D" uid="uid://7f0ha2eehvgi" path="res://sprites/effects/player_teleport_fx.png" id="17_vlbxp"]
+[ext_resource type="AudioStream" uid="uid://bh838k0x0245y" path="res://audio/music/Kaidou Strike Vocals.mp3" id="18_8tn16"]
+[ext_resource type="Texture2D" uid="uid://by6ysjx6v4wd4" path="res://sprites/ui/defeated.png" id="18_jnpes"]
+[ext_resource type="AudioStream" uid="uid://by6jiejob8251" path="res://audio/sfx/hud/begin.wav" id="18_no3jc"]
+[ext_resource type="Theme" uid="uid://cyey10c572y6w" path="res://main_menu/main_menu_theme.tres" id="19_i31tj"]
+[ext_resource type="AudioStream" uid="uid://dy7f18v1jkkrn" path="res://audio/sfx/hud/defeated.wav" id="20_i31tj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sy3ef"]
 size = Vector2(480, 32)
@@ -82,6 +89,222 @@ default_font = ExtResource("1_csx3m")
 default_font_size = 128
 Label/constants/outline_size = 16
 
+[sub_resource type="Animation" id="Animation_vlbxp"]
+resource_name = "begin"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HUD/BeginRect:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.083333336, -0.16666667, 0, 0, 1, -0.083333336, -0.16666667, 0, 0, 0, -0.33333334, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 2.5, 3)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_game"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HUD/BeginRect/BeginPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HUD/BeginRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_jnpes"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HUD/BeginRect:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HUD/BeginRect/BeginPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HUD/Defeated:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HUD/Defeated/VBoxContainer:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../HUD/Defeated/HBoxContainer:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../HUD/Defeated/DefeatedPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../HUD/BeginRect:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../HUD/Defeated:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_no3jc"]
+resource_name = "defeated"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HUD/Defeated:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HUD/Defeated/VBoxContainer:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.083333336, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HUD/Defeated/HBoxContainer:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.083333336, 0, 0, 0),
+"times": PackedFloat32Array(1, 1.5)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HUD/Defeated/DefeatedPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../HUD/Defeated:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i31tj"]
+_data = {
+&"RESET": SubResource("Animation_jnpes"),
+&"begin": SubResource("Animation_vlbxp"),
+&"defeated": SubResource("Animation_no3jc")
+}
+
 [node name="JugglingScreen" type="Node"]
 script = ExtResource("1_u0x2w")
 
@@ -108,7 +331,8 @@ position = Vector2(0, 119)
 shape = SubResource("RectangleShape2D_sy3ef")
 
 [node name="Ground" type="Sprite2D" parent="Juggling2D/Ground"]
-texture = ExtResource("7_kagna")
+position = Vector2(0, 135.25)
+texture = ExtResource("4_vqhe1")
 
 [node name="Player" type="Node2D" parent="Juggling2D"]
 position = Vector2(960, 760)
@@ -142,7 +366,7 @@ texture = ExtResource("14_lukk6")
 position = Vector2(0, 9)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_mdcjv")
-animation = &"kick"
+animation = &"idle"
 
 [node name="FootSprite" type="Sprite2D" parent="Juggling2D/Player"]
 visible = false
@@ -151,6 +375,8 @@ texture_filter = 1
 position = Vector2(0, 9)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_vqhe1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Juggling2D/Player"]
 
 [node name="Lanes" type="Node2D" parent="Juggling2D"]
 position = Vector2(960, 760)
@@ -233,7 +459,124 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("17_lukk6")
 
+[node name="BeginRect" type="TextureRect" parent="HUD"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_8tn16")
+
+[node name="BeginPlayer" type="AudioStreamPlayer" parent="HUD/BeginRect"]
+stream = ExtResource("18_no3jc")
+
+[node name="Defeated" type="Control" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HUD/Defeated"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Defeated"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_jnpes")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Defeated"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -288.5
+offset_top = -560.0
+offset_right = 288.5
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HighScoreLabel" type="Label" parent="HUD/Defeated/VBoxContainer"]
+layout_mode = 2
+text = "High Score: 0"
+
+[node name="ScoreLabel" type="Label" parent="HUD/Defeated/VBoxContainer"]
+layout_mode = 2
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Defeated"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -514.0
+offset_top = -224.0
+offset_right = 514.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("19_i31tj")
+
+[node name="RetryButton" type="Button" parent="HUD/Defeated/HBoxContainer"]
+custom_minimum_size = Vector2(512, 192)
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Retry"
+
+[node name="QuitButton" type="Button" parent="HUD/Defeated/HBoxContainer"]
+custom_minimum_size = Vector2(512, 192)
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Quit"
+
+[node name="DefeatedPlayer" type="AudioStreamPlayer" parent="HUD/Defeated"]
+stream = ExtResource("20_i31tj")
+
+[node name="InstrumentalPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_mdcjv")
+autoplay = true
+parameters/looping = true
+
+[node name="VocalPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_8tn16")
+volume_db = -80.0
+autoplay = true
+parameters/looping = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Juggling2D")
+libraries = {
+&"": SubResource("AnimationLibrary_i31tj")
+}
+autoplay = "begin"
+
 [connection signal="area_entered" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_entered"]
 [connection signal="area_exited" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_2d_area_exited"]
 [connection signal="animation_changed" from="Juggling2D/Player/AnimatedSprite2D" to="Juggling2D/Player" method="_on_animation_changed"]
 [connection signal="animation_finished" from="Juggling2D/Player/AnimatedSprite2D" to="Juggling2D/Player" method="_on_animation_finished"]
+[connection signal="pressed" from="HUD/Defeated/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="HUD/Defeated/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

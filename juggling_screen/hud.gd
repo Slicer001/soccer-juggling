@@ -2,6 +2,7 @@ extends Control
 class_name HUD
 
 const HEART_EMPTY = preload("uid://c8p21m7n1ohrc")
+var SAVE_PATH = "user://kaidou_strike.save"
 
 @onready var score_label: Label = $Score
 @onready var hearts = [$HealthContainer/Heart1, $HealthContainer/Heart2, $HealthContainer/Heart3]
@@ -24,7 +25,64 @@ func update_score(value: int) -> void:
 func set_score(value: int) -> void:
 	score = value
 	score_label.text = "Score: " + str(value)
+	#if score is high, bring in vocals
+	if score >= 50000:
+		var vocal_volume = min(100000, score - 50000)
+		var vocal_player = $"../VocalPlayer"
+		vocal_player.volume_linear = vocal_volume / 100000.0 * 0.8
 
 func set_health(value: int) -> void:
 	health = value
 	hearts[health].texture = HEART_EMPTY
+	#when you lose
+	if health <= 0:
+		#play defeated animation
+		var juggling_screen = self.get_parent()
+		juggling_screen.play_defeated_animation()
+		#update score and high score
+		var high_score = load_score()
+		if score > high_score:
+			high_score = score
+		save_score(high_score)
+		#tween to remove voal and instrumental audio
+		var vocal_player = $"../VocalPlayer"
+		var instrumental_player = $"../InstrumentalPlayer"
+		var audio_tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+		audio_tween.tween_property(vocal_player, "volume_linear", 0.0, 3.0)
+		audio_tween.tween_property(instrumental_player, "volume_linear", 0.0, 3.0)
+
+func save_score(high_score: int) -> void:
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	
+	# Call the node's save function.
+	var node_data = { "high_score": high_score }
+
+	# JSON provides a static method to serialized JSON string.
+	var json_string = JSON.stringify(node_data)
+
+	# Store the save dictionary as a new line in the save file.
+	save_file.store_line(json_string)
+
+func load_score() -> int:
+	if not FileAccess.file_exists(SAVE_PATH):
+		return 0
+
+	# Load the file line by line and process that dictionary to restore
+	# the object it represents.
+	var save_file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+
+		# Creates the helper class to interact with JSON.
+		var json = JSON.new()
+
+		# Check if there is any error while parsing the JSON string, skip in case of failure.
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+
+		# Get the data from the JSON object.
+		var node_data = json.data
+		return node_data["high_score"]
+	return 0

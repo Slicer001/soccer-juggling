@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bh838k0x0245y"
+path="res://.godot/imported/Kaidou Strike Vocals.mp3-8781ac026f9cd2e8ec61f707545a18d4.mp3str"
+
+[deps]
+
+source_file="res://audio/music/Kaidou Strike Vocals.mp3"
+dest_files=["res://.godot/imported/Kaidou Strike Vocals.mp3-8781ac026f9cd2e8ec61f707545a18d4.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
