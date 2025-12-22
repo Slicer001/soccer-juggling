@@ -7,6 +7,10 @@ var SAVE_PATH = "user://kaidou_strike.save"
 @onready var score_label: Label = $Score
 @onready var hearts = [$HealthContainer/Heart1, $HealthContainer/Heart2, $HealthContainer/Heart3]
 
+@onready var high_score_label: Label = $Defeated/VBoxContainer/HighScoreLabel
+@onready var score_label_defeated: Label = $Defeated/VBoxContainer/ScoreLabel
+
+
 var score_tween: Tween = null
 #var score_scale_tween: Tween = null
 var score: int = 0 : set = set_score
@@ -44,6 +48,9 @@ func set_health(value: int) -> void:
 		if score > high_score:
 			high_score = score
 		save_score(high_score)
+		#update the labels
+		high_score_label.text = "High Score: " + str(high_score)
+		score_label_defeated.text = "Score: " + str(score)
 		#tween to remove voal and instrumental audio
 		var vocal_player = $"../VocalPlayer"
 		var instrumental_player = $"../InstrumentalPlayer"
@@ -52,14 +59,14 @@ func set_health(value: int) -> void:
 		audio_tween.tween_property(instrumental_player, "volume_linear", 0.0, 3.0)
 
 func save_score(high_score: int) -> void:
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save_file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	
 	# Call the node's save function.
 	var node_data = { "high_score": high_score }
 
 	# JSON provides a static method to serialized JSON string.
 	var json_string = JSON.stringify(node_data)
-
+	
 	# Store the save dictionary as a new line in the save file.
 	save_file.store_line(json_string)
 
