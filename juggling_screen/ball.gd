@@ -1,13 +1,18 @@
 extends Node2D
 class_name Ball
 
-const GRAVITY := Vector2(0, 9.8) # Vector2(0, 9.8)
+const GRAVITY := Vector2(0, 11) # Vector2(0, 9.8)
 const MAX_FALL_SPEED := 7
 const WARNING_THRESHOLD := 5
+
+var kick_sfx = [preload("uid://dg213emmpxaq6"), preload("uid://c6oqrxmak5gap"), preload("uid://bnc2se6o484e5"), preload("uid://ckx8bpfmo7d3l"), preload("uid://eq5ar4w5mlew")]
+const KICK_4_RANDOMIZER = preload("uid://bx2fgfe50vm0l")
+
 
 @onready var area_2d: Area2D = $Area2D
 @onready var outline: Sprite2D = $Outline
 @onready var warning: Node2D = $Warning
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var juggling_2d = null
 
@@ -45,7 +50,12 @@ func _physics_process(delta: float) -> void:
 
 
 func strike(player: Player, striking_force: float) -> void:
+	#reduce strikes
 	remaining_strikes -= 1
+	#play SFX
+	#audio_stream_player.stream = kick_sfx.pick_random()
+	audio_stream_player.stream = KICK_4_RANDOMIZER if remaining_strikes <= 0 else kick_sfx[0]
+	audio_stream_player.play()
 	#how many times left to hit the ball before it is done
 	if remaining_strikes > 0:
 		moving = true

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbg6ayu22n5tt"]
+[gd_scene load_steps=8 format=3 uid="uid://dbg6ayu22n5tt"]
 
 [ext_resource type="Script" uid="uid://bvuf4x0qp81r6" path="res://juggling_screen/ball.gd" id="1_16ri7"]
 [ext_resource type="Texture2D" uid="uid://dy5ncobswgnap" path="res://sprites/ball.png" id="2_twdgk"]
 [ext_resource type="Texture2D" uid="uid://d1lbyrs7ugpca" path="res://sprites/ui/warning_outline.png" id="3_e1xaa"]
 [ext_resource type="Texture2D" uid="uid://dhpv5261mh3p5" path="res://sprites/balls/ball.png" id="3_me22w"]
 [ext_resource type="Texture2D" uid="uid://p5rg36asskww" path="res://sprites/ui/warning.png" id="3_twdgk"]
+[ext_resource type="AudioStream" uid="uid://bx2fgfe50vm0l" path="res://audio/sfx/ball/kick_4_randomizer.tres" id="6_osrct"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sy3ef"]
 radius = 8.0
@@ -39,5 +40,9 @@ texture = ExtResource("3_e1xaa")
 [node name="Warning" type="Sprite2D" parent="Warning"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_twdgk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_osrct")
+volume_db = -10.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

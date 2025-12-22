@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwh8ejn5aai44"]
+[gd_scene load_steps=6 format=3 uid="uid://dwh8ejn5aai44"]
 
 [ext_resource type="Theme" uid="uid://cyey10c572y6w" path="res://main_menu/main_menu_theme.tres" id="1_oa53l"]
 [ext_resource type="Script" uid="uid://488yxhukvhlh" path="res://main_menu/main_menu.gd" id="2_3shxk"]
 [ext_resource type="Texture2D" uid="uid://blssq1mmo3lwr" path="res://sprites/ui/window.png" id="2_d3a7t"]
-[ext_resource type="Texture2D" uid="uid://b7udafol33y1c" path="res://sprites/ui/title.png" id="4_bws42"]
+[ext_resource type="Texture2D" uid="uid://do2ifqg2sy7bj" path="res://sprites/ui/title_2.png" id="4_3f7m4"]
+[ext_resource type="AudioStream" uid="uid://wp6yq3pgmkrk" path="res://audio/sfx/menu/Select Menu.mp3" id="5_3f7m4"]
 
 [node name="MainMenu" type="Control"]
 texture_filter = 1
@@ -93,7 +94,20 @@ offset_top = 112.0
 offset_right = 298.0
 offset_bottom = 440.0
 grow_horizontal = 2
-texture = ExtResource("4_bws42")
+texture = ExtResource("4_3f7m4")
+
+[node name="Transition" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3f7m4")
 
 [connection signal="pressed" from="VBoxContainer/FreePlayButton" to="." method="_on_free_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
