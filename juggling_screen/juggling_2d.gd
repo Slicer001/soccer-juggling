@@ -12,6 +12,9 @@ const STALL_BALL = preload("uid://crpcvvsw1iyfs")
 @onready var lanes := [$Lanes/Lane1, $Lanes/Lane2, $Lanes/Lane3, $Lanes/Lane4]
 @onready var camera_2d: Camera2D = $Camera2D
 
+const BALL_TIMER_LENGTH := 2.0
+const BALL_TIMER_DECREASE := 0.98 #the percent of the ball timer that remains each time a ball spawns
+
 var score := 0 : set = set_score
 
 var physics_speed := 1.0
@@ -21,8 +24,7 @@ var number_of_strikes := 0 : set = set_number_of_strikes
 var streak := 0
 var balls := []
 
-var ball_timer_length := 2.0 #seconds between ball spawns
-var ball_timer: float = ball_timer_length * 1000
+var ball_timer: float = BALL_TIMER_LENGTH * 1000
 
 func _ready() -> void:
 	player.active_lane = 0
@@ -31,11 +33,11 @@ func _physics_process(delta: float) -> void:
 	ball_timer -= delta * physics_speed
 	if ball_timer <= 0:
 		add_ball()
-		ball_timer = ball_timer_length * pow(0.99, streak)
+		ball_timer = BALL_TIMER_LENGTH * pow(BALL_TIMER_DECREASE, streak)
 
 # Starts a game.
 func start_game() -> void:
-	ball_timer = ball_timer_length
+	ball_timer = BALL_TIMER_LENGTH
 
 # Creates a new ball. 
 func add_ball() -> void:

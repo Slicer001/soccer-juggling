@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bm80fte4ltpp7"]
+[gd_scene load_steps=45 format=3 uid="uid://bm80fte4ltpp7"]
 
 [ext_resource type="FontFile" uid="uid://dd5hxhdcn227k" path="res://fonts/Jersey10-Regular.ttf" id="1_csx3m"]
 [ext_resource type="Script" uid="uid://dd6hbnxgft0r0" path="res://juggling_screen/juggling_screen.gd" id="1_u0x2w"]
@@ -13,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://xk7ul5wrjye2" path="res://sprites/player/player_foot.png" id="13_vqhe1"]
 [ext_resource type="Texture2D" uid="uid://djwkestb1fkoo" path="res://sprites/ui/Arrow_Up_Key_Dark.png" id="14_lukk6"]
 [ext_resource type="Texture2D" uid="uid://c2qy245pgm8kd" path="res://sprites/player/player_idle_spritesheet.png" id="16_jnpes"]
+[ext_resource type="Script" uid="uid://ilgab7vtl8l3" path="res://juggling_screen/dad.gd" id="16_mkud6"]
 [ext_resource type="Script" uid="uid://dwons01prkgdm" path="res://juggling_screen/hud.gd" id="16_vqhe1"]
+[ext_resource type="Texture2D" uid="uid://dwngjqmmlawxn" path="res://sprites/dialogue/dad_sprite.png" id="17_7rqp5"]
 [ext_resource type="Texture2D" uid="uid://bkjl45em47qu5" path="res://sprites/ui/begin.png" id="17_8tn16"]
 [ext_resource type="Texture2D" uid="uid://bknck7l6ciwpb" path="res://sprites/ui/heart.png" id="17_lukk6"]
 [ext_resource type="AudioStream" uid="uid://qbljl6vjjill" path="res://audio/music/Kaidou Strike Instrumental.mp3" id="17_mdcjv"]
@@ -21,14 +23,16 @@
 [ext_resource type="AudioStream" uid="uid://bh838k0x0245y" path="res://audio/music/Kaidou Strike Vocals.mp3" id="18_8tn16"]
 [ext_resource type="Texture2D" uid="uid://by6ysjx6v4wd4" path="res://sprites/ui/defeated.png" id="18_jnpes"]
 [ext_resource type="AudioStream" uid="uid://by6jiejob8251" path="res://audio/sfx/hud/begin.wav" id="18_no3jc"]
+[ext_resource type="Texture2D" uid="uid://dcn10xwoojiun" path="res://sprites/dialogue/frame.png" id="18_rc682"]
 [ext_resource type="Theme" uid="uid://cyey10c572y6w" path="res://main_menu/main_menu_theme.tres" id="19_i31tj"]
 [ext_resource type="AudioStream" uid="uid://dy7f18v1jkkrn" path="res://audio/sfx/hud/defeated.wav" id="20_i31tj"]
+[ext_resource type="AudioStream" uid="uid://wp6yq3pgmkrk" path="res://audio/sfx/menu/Select Menu.mp3" id="24_tbirw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sy3ef"]
 size = Vector2(480, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmf2d"]
-size = Vector2(32, 96)
+size = Vector2(32, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbirw"]
 atlas = ExtResource("16_jnpes")
@@ -210,7 +214,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -235,6 +239,17 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../TransitionRect:color:a")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_no3jc"]
@@ -305,6 +320,109 @@ _data = {
 &"defeated": SubResource("Animation_no3jc")
 }
 
+[sub_resource type="Animation" id="Animation_tbirw"]
+resource_name = "trans_in"
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("begin"),
+"times": PackedFloat32Array(1)
+}
+
+[sub_resource type="Animation" id="Animation_pneyo"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_yf5db"]
+resource_name = "trans_out_retry"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"retry"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_mkud6"]
+resource_name = "trans_out_quit"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"quit"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pneyo"]
+_data = {
+&"RESET": SubResource("Animation_pneyo"),
+&"trans_in": SubResource("Animation_tbirw"),
+&"trans_out_quit": SubResource("Animation_mkud6"),
+&"trans_out_retry": SubResource("Animation_yf5db")
+}
+
 [node name="JugglingScreen" type="Node"]
 script = ExtResource("1_u0x2w")
 
@@ -342,6 +460,7 @@ script = ExtResource("8_te0tn")
 [node name="Area2D" type="Area2D" parent="Juggling2D/Player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Juggling2D/Player/Area2D"]
+position = Vector2(0, -80)
 shape = SubResource("RectangleShape2D_wmf2d")
 
 [node name="StrikeQTE" type="Node2D" parent="Juggling2D/Player"]
@@ -422,6 +541,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_fd8gr")
 script = ExtResource("16_vqhe1")
+
+[node name="Dad" type="CenterContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -246.0
+offset_top = 32.0
+offset_right = -139.0
+offset_bottom = 136.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+script = ExtResource("16_mkud6")
+
+[node name="FaceTexture" type="TextureRect" parent="HUD/Dad"]
+layout_mode = 2
+texture = ExtResource("17_7rqp5")
+
+[node name="FrameTexture" type="TextureRect" parent="HUD/Dad"]
+layout_mode = 2
+texture = ExtResource("18_rc682")
 
 [node name="Score" type="Label" parent="HUD"]
 layout_mode = 1
@@ -556,6 +696,16 @@ text = "Quit"
 [node name="DefeatedPlayer" type="AudioStreamPlayer" parent="HUD/Defeated"]
 stream = ExtResource("20_i31tj")
 
+[node name="TransitionRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="InstrumentalPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_mdcjv")
 autoplay = true
@@ -572,7 +722,16 @@ root_node = NodePath("../Juggling2D")
 libraries = {
 &"": SubResource("AnimationLibrary_i31tj")
 }
-autoplay = "begin"
+
+[node name="TransitionPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../TransitionRect")
+libraries = {
+&"": SubResource("AnimationLibrary_pneyo")
+}
+autoplay = "trans_in"
+
+[node name="SelectMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_tbirw")
 
 [connection signal="area_entered" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_entered"]
 [connection signal="area_exited" from="Juggling2D/Player/Area2D" to="Juggling2D/Player" method="_on_area_2d_area_exited"]

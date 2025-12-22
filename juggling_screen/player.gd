@@ -25,6 +25,8 @@ var invincible := false : set = set_invincible
 var invincible_timer := 0.0
 var low_alpha := false
 
+var stunned := false
+
 var active_lane := 0 : set = set_active_lane
 
 # Called when the node enters the scene tree for the first time.
@@ -50,23 +52,28 @@ func _physics_process(delta: float) -> void:
 			invincible_timer = 0.1
 
 func _input(event: InputEvent) -> void:
+	#do nothing if stunned
+	if stunned:
+		return
 	var juggling_2d = self.get_parent()
 	#switching focused balls
-	if event.is_action_pressed("ui_left") and not striking:
+	if event.is_action_pressed("move_left") and not striking:
 		#var next_ball = juggling_2d.get_next_ball_left(self.global_position)
 		#focused_ball = next_ball if next_ball else focused_ball
 		active_lane = juggling_2d.get_next_lane(active_lane, -1)
-		pass
-	if event.is_action_pressed("ui_right") and not striking:
+	if event.is_action_pressed("move_right") and not striking:
 		#var next_ball = juggling_2d.get_next_ball_right(self.global_position)
 		#focused_ball = next_ball if next_ball else focused_ball
 		active_lane = juggling_2d.get_next_lane(active_lane, +1)
-		pass
+	if event.is_action_pressed("far_left") and not striking:
+		active_lane = 0
+	if event.is_action_pressed("far_right") and not striking:
+		active_lane = juggling_2d.lanes.size()-1
 	#begin striking ball
-	if event.is_action_pressed("ui_up"):
+	if event.is_action_pressed("strike"):
 		self.auto_strike()
 	#activate strike
-	if event.is_action_released("ui_up"):
+	if event.is_action_released("strike"):
 		if focused_ball and striking:
 			self.activate_strike()
 
@@ -116,6 +123,7 @@ func auto_strike() -> void:
 	#if there is no ball, the character is stunned for a second
 	if not ball or not self.area_2d.overlaps_area(ball.area_2d):
 		#TODO: add character stun
+		self.stun(0.5)
 		return
 	#quickly slow down time
 	juggling_2d.slow_time(0.25)
@@ -127,6 +135,11 @@ func auto_strike() -> void:
 	animated_sprite_2d.play("kick")
 	#strike the ball
 	ball.strike(self, striking_force)
+
+func stun(time: float) -> void:
+	stunned = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "stunned", false, time)
 
 
 

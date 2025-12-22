@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ckx8bpfmo7d3l"
+path="res://.godot/imported/Kick 4.mp3-fca8cf10338f7995c28ab7f49424b3b1.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/ball/Kick 4.mp3"
+dest_files=["res://.godot/imported/Kick 4.mp3-fca8cf10338f7995c28ab7f49424b3b1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
