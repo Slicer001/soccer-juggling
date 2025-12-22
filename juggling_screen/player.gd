@@ -30,7 +30,6 @@ var active_lane := 0 : set = set_active_lane
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animated_sprite_2d.play("idle")
-	active_lane = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -121,8 +120,8 @@ func auto_strike() -> void:
 	#quickly slow down time
 	juggling_2d.slow_time(0.25)
 	#set location to the ball being kicked
-	self.global_position.x = ball.global_position.x + 32 + 8
-	self.global_position.y = ball.global_position.y + 32 - 8
+	self.global_position.x = ball.global_position.x + 32 + 16
+	self.global_position.y = ball.global_position.y + 64 + 32
 	#play the animation
 	animated_sprite_2d.frame = 0
 	animated_sprite_2d.play("kick")

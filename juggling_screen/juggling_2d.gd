@@ -35,6 +35,7 @@ func _physics_process(delta: float) -> void:
 
 # Starts a game.
 func start_game() -> void:
+	player.active_lane = 0
 	ball_timer = ball_timer_length
 
 # Creates a new ball. 
