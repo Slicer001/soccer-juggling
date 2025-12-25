@@ -11,8 +11,10 @@ const STALL_BALL = preload("uid://crpcvvsw1iyfs")
 @onready var player: Player = $Player
 @onready var lanes := [$Lanes/Lane1, $Lanes/Lane2, $Lanes/Lane3, $Lanes/Lane4]
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var dad_approves: AudioStreamPlayer = $DadApproves
 
-const BALL_TIMER_LENGTH := 2.0
+
+const BALL_TIMER_LENGTH := 1.5
 const BALL_TIMER_DECREASE := 0.98 #the percent of the ball timer that remains each time a ball spawns
 
 var score := 0 : set = set_score
@@ -21,7 +23,7 @@ var physics_speed := 1.0
 var physics_speed_tween: Tween = null
 
 var number_of_strikes := 0 : set = set_number_of_strikes
-var streak := 0
+var streak := 0 : set = set_streak
 var balls := []
 
 var ball_timer: float = BALL_TIMER_LENGTH * 1000
@@ -145,3 +147,13 @@ func get_next_ball(lane: int) -> Ball:
 			else:
 				result = ball
 	return result
+
+func set_streak(value: int) -> void:
+	streak = value
+	if streak != 0 and streak % 25 == 0:
+		dad_approves.play()
+		hud.dad.talking = true
+
+
+func _on_dad_approves_finished() -> void:
+	hud.dad.talking = false

@@ -1,0 +1,20 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=8 format=3 uid="uid://d3um7oprf4hog"]
+
+[ext_resource type="AudioStream" uid="uid://eeb0dj725xtw" path="res://audio/dialogue/daddiss/dd1.mp3" id="1_svf6r"]
+[ext_resource type="AudioStream" uid="uid://dg6sk0l6448rq" path="res://audio/dialogue/daddiss/dd2.mp3" id="2_r7ake"]
+[ext_resource type="AudioStream" uid="uid://dm4fuyt0d2mqo" path="res://audio/dialogue/daddiss/dd3.mp3" id="3_vmk5r"]
+[ext_resource type="AudioStream" uid="uid://bpgmbkpflhf5j" path="res://audio/dialogue/daddiss/dd4.mp3" id="4_1qj1q"]
+[ext_resource type="AudioStream" uid="uid://ckk5hkpthhwv7" path="res://audio/dialogue/daddiss/dd5.mp3" id="5_ub1u6"]
+[ext_resource type="AudioStream" uid="uid://vi8wb2fquvmq" path="res://audio/dialogue/daddiss/dd6.mp3" id="6_6lrdf"]
+[ext_resource type="AudioStream" uid="uid://b4pidyn0fau3b" path="res://audio/dialogue/daddiss/dd7.mp3" id="7_fglwm"]
+
+[resource]
+playback_mode = 1
+streams_count = 7
+stream_0/stream = ExtResource("1_svf6r")
+stream_1/stream = ExtResource("2_r7ake")
+stream_2/stream = ExtResource("3_vmk5r")
+stream_3/stream = ExtResource("4_1qj1q")
+stream_4/stream = ExtResource("5_ub1u6")
+stream_5/stream = ExtResource("6_6lrdf")
+stream_6/stream = ExtResource("7_fglwm")

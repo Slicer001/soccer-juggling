@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cl3oejd28sbpg"
+path="res://.godot/imported/kick11.mp3-68aba4506b158f4b058ebc2df4a5bd54.mp3str"
+
+[deps]
+
+source_file="res://audio/dialogue/Kick noises/kick11.mp3"
+dest_files=["res://.godot/imported/kick11.mp3-68aba4506b158f4b058ebc2df4a5bd54.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -15,6 +15,7 @@ class_name Player
 const STRIKE_TIME := 1.0
 const STRIKE_BAR_SIZE := 29
 const INVINCIBILITY_TIME := 1.0
+const STUN_TIME = 1.0
 
 var focused_ball: Ball = null : set = set_focused_ball
 var striking_tween: Tween = null
@@ -25,7 +26,7 @@ var invincible := false : set = set_invincible
 var invincible_timer := 0.0
 var low_alpha := false
 
-var stunned := false
+var stunned := false : set = set_stunned
 
 var active_lane := 0 : set = set_active_lane
 
@@ -123,7 +124,7 @@ func auto_strike() -> void:
 	#if there is no ball, the character is stunned for a second
 	if not ball or not self.area_2d.overlaps_area(ball.area_2d):
 		#TODO: add character stun
-		self.stun(0.5)
+		self.stun(STUN_TIME)
 		return
 	#quickly slow down time
 	juggling_2d.slow_time(0.25)
@@ -165,6 +166,16 @@ func set_active_lane(value: int) -> void:
 	self.global_position = juggling_2d.get_lane_global_position(active_lane)
 	animated_sprite_2d.frame = 0
 	animated_sprite_2d.play("teleport")
+
+func set_stunned(value: bool) -> void:
+	stunned = value
+	if stunned:
+		var juggling_2d = self.get_parent()
+		self.global_position = juggling_2d.get_lane_global_position(active_lane)
+		animated_sprite_2d.play("stunned")
+	else:
+		animated_sprite_2d.play("idle")
+
 
 
 func _on_area_entered(area: Area2D) -> void:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cwuaibfv6ahd8"
+path="res://.godot/imported/drop1.mp3-ac9995680816d25fddd0ce5a00a6c0d3.mp3str"
+
+[deps]
+
+source_file="res://audio/dialogue/ball drop/drop1.mp3"
+dest_files=["res://.godot/imported/drop1.mp3-ac9995680816d25fddd0ce5a00a6c0d3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

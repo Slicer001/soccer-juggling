@@ -9,6 +9,8 @@ var SAVE_PATH = "user://kaidou_strike.save"
 
 @onready var high_score_label: Label = $Defeated/VBoxContainer/HighScoreLabel
 @onready var score_label_defeated: Label = $Defeated/VBoxContainer/ScoreLabel
+@onready var dad: Dad = $Dad
+@onready var kaidou_ball_drop: AudioStreamPlayer = $KaidouBallDrop
 
 
 var score_tween: Tween = null
@@ -57,6 +59,8 @@ func set_health(value: int) -> void:
 		var audio_tween = get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 		audio_tween.tween_property(vocal_player, "volume_linear", 0.0, 3.0)
 		audio_tween.tween_property(instrumental_player, "volume_linear", 0.0, 3.0)
+	else:
+		kaidou_ball_drop.play()
 
 func save_score(high_score: int) -> void:
 	var save_file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)

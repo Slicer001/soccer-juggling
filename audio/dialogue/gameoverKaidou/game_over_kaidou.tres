@@ -1,0 +1,16 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=6 format=3 uid="uid://r1n214osg1cc"]
+
+[ext_resource type="AudioStream" uid="uid://orjkpbc3vxfx" path="res://audio/dialogue/gameoverKaidou/gok1.mp3" id="1_atebs"]
+[ext_resource type="AudioStream" uid="uid://chirnv4ehqmu4" path="res://audio/dialogue/gameoverKaidou/gok2.mp3" id="2_um83o"]
+[ext_resource type="AudioStream" uid="uid://cbqwed16hk8gq" path="res://audio/dialogue/gameoverKaidou/gok3.mp3" id="3_urfnf"]
+[ext_resource type="AudioStream" uid="uid://cl26aaot0wabg" path="res://audio/dialogue/gameoverKaidou/gok4.mp3" id="4_07ylv"]
+[ext_resource type="AudioStream" uid="uid://b6irba4o75nhm" path="res://audio/dialogue/gameoverKaidou/gok5.mp3" id="5_5q81q"]
+
+[resource]
+playback_mode = 1
+streams_count = 5
+stream_0/stream = ExtResource("1_atebs")
+stream_1/stream = ExtResource("2_um83o")
+stream_2/stream = ExtResource("3_urfnf")
+stream_3/stream = ExtResource("4_07ylv")
+stream_4/stream = ExtResource("5_5q81q")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djwkestb1fkoo"
-path="res://.godot/imported/Arrow_Up_Key_Dark.png-6571dad52db3286645eedebccf39892f.ctex"
+uid="uid://cu7wvs00iodht"
+path="res://.godot/imported/XboxSeriesX_LB.png-e0c7099630550cafda1af4a3b41ccc38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ui/Arrow_Up_Key_Dark.png"
-dest_files=["res://.godot/imported/Arrow_Up_Key_Dark.png-6571dad52db3286645eedebccf39892f.ctex"]
+source_file="res://sprites/controls/XboxSeriesX_LB.png"
+dest_files=["res://.godot/imported/XboxSeriesX_LB.png-e0c7099630550cafda1af4a3b41ccc38.ctex"]
 
 [params]
 

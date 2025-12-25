@@ -1,0 +1,22 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=9 format=3 uid="uid://bjkg1f2wvcece"]
+
+[ext_resource type="AudioStream" uid="uid://dgj12354uicuu" path="res://audio/dialogue/dadapprove/dadgood1.mp3" id="1_2a5sg"]
+[ext_resource type="AudioStream" uid="uid://dxjohtismqsuo" path="res://audio/dialogue/dadapprove/dadgood2.mp3" id="2_2qraf"]
+[ext_resource type="AudioStream" uid="uid://lwgkpnh2ewxi" path="res://audio/dialogue/dadapprove/dadgood3.mp3" id="3_faqw7"]
+[ext_resource type="AudioStream" uid="uid://cxuxpmh0rnkpf" path="res://audio/dialogue/dadapprove/dadgood4.mp3" id="4_j270x"]
+[ext_resource type="AudioStream" uid="uid://ddgwt8if33odf" path="res://audio/dialogue/dadapprove/dadgood5.mp3" id="5_n2vxi"]
+[ext_resource type="AudioStream" uid="uid://dvb0v72q2d32w" path="res://audio/dialogue/dadapprove/dadgood6.mp3" id="6_hdtg3"]
+[ext_resource type="AudioStream" uid="uid://q6hloiqqopk3" path="res://audio/dialogue/dadapprove/dadgood7.mp3" id="7_wxjmn"]
+[ext_resource type="AudioStream" uid="uid://7aaoq3rnx1ub" path="res://audio/dialogue/dadapprove/dadgood8.mp3" id="8_051g4"]
+
+[resource]
+playback_mode = 1
+streams_count = 8
+stream_0/stream = ExtResource("1_2a5sg")
+stream_1/stream = ExtResource("2_2qraf")
+stream_2/stream = ExtResource("3_faqw7")
+stream_3/stream = ExtResource("4_j270x")
+stream_4/stream = ExtResource("5_n2vxi")
+stream_5/stream = ExtResource("6_hdtg3")
+stream_6/stream = ExtResource("7_wxjmn")
+stream_7/stream = ExtResource("8_051g4")

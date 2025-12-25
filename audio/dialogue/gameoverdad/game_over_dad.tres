@@ -1,0 +1,20 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=8 format=3 uid="uid://cloj8wrjdf0m6"]
+
+[ext_resource type="AudioStream" uid="uid://bf7p3y1076ck" path="res://audio/dialogue/gameoverdad/god1.mp3" id="1_bgpsy"]
+[ext_resource type="AudioStream" uid="uid://b68uft1o6n2r0" path="res://audio/dialogue/gameoverdad/god2.mp3" id="2_ocjio"]
+[ext_resource type="AudioStream" uid="uid://c0ahiyjc7drd0" path="res://audio/dialogue/gameoverdad/god3.mp3" id="3_rbkuf"]
+[ext_resource type="AudioStream" uid="uid://ci2qnehlm3v7t" path="res://audio/dialogue/gameoverdad/god4.mp3" id="4_6e1rg"]
+[ext_resource type="AudioStream" uid="uid://b3lbl4pr2tsy" path="res://audio/dialogue/gameoverdad/god5.mp3" id="5_b3ed6"]
+[ext_resource type="AudioStream" uid="uid://cjm7nar3g3uqj" path="res://audio/dialogue/gameoverdad/god6.mp3" id="6_81h7t"]
+[ext_resource type="AudioStream" uid="uid://bt2gubqksois7" path="res://audio/dialogue/gameoverdad/god7.mp3" id="7_2mpvu"]
+
+[resource]
+playback_mode = 1
+streams_count = 7
+stream_0/stream = ExtResource("1_bgpsy")
+stream_1/stream = ExtResource("2_ocjio")
+stream_2/stream = ExtResource("3_rbkuf")
+stream_3/stream = ExtResource("4_6e1rg")
+stream_4/stream = ExtResource("5_b3ed6")
+stream_5/stream = ExtResource("6_81h7t")
+stream_6/stream = ExtResource("7_2mpvu")

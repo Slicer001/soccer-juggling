@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://47hf0mmpjxc4"
+path="res://.godot/imported/kick3.mp3-f9eb70b19f6aadd3338000d359e16171.mp3str"
+
+[deps]
+
+source_file="res://audio/dialogue/Kick noises/kick3.mp3"
+dest_files=["res://.godot/imported/kick3.mp3-f9eb70b19f6aadd3338000d359e16171.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
