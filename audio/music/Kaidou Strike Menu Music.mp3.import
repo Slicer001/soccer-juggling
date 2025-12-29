@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b708pel341pcd"
+path="res://.godot/imported/Kaidou Strike Menu Music.mp3-56152ef570f00e4ce082223019a0cfbd.mp3str"
+
+[deps]
+
+source_file="res://audio/music/Kaidou Strike Menu Music.mp3"
+dest_files=["res://.godot/imported/Kaidou Strike Menu Music.mp3-56152ef570f00e4ce082223019a0cfbd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
