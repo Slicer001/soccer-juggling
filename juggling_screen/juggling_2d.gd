@@ -150,7 +150,7 @@ func get_next_ball(lane: int) -> Ball:
 
 func set_streak(value: int) -> void:
 	streak = value
-	if streak != 0 and streak % 25 == 0:
+	if streak != 0 and streak % 10 == 0:
 		dad_approves.play()
 		hud.dad.talking = true
 

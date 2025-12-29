@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwh8ejn5aai44"]
+[gd_scene load_steps=7 format=3 uid="uid://dwh8ejn5aai44"]
 
 [ext_resource type="Theme" uid="uid://cyey10c572y6w" path="res://main_menu/main_menu_theme.tres" id="1_oa53l"]
 [ext_resource type="Script" uid="uid://488yxhukvhlh" path="res://main_menu/main_menu.gd" id="2_3shxk"]
 [ext_resource type="Texture2D" uid="uid://blssq1mmo3lwr" path="res://sprites/ui/window.png" id="2_d3a7t"]
 [ext_resource type="Texture2D" uid="uid://do2ifqg2sy7bj" path="res://sprites/ui/title_2.png" id="4_3f7m4"]
 [ext_resource type="AudioStream" uid="uid://wp6yq3pgmkrk" path="res://audio/sfx/menu/Select Menu.mp3" id="5_3f7m4"]
+[ext_resource type="AudioStream" uid="uid://b708pel341pcd" path="res://audio/music/Kaidou Strike Menu Music.mp3" id="6_6tl50"]
 
 [node name="MainMenu" type="Control"]
 texture_filter = 1
@@ -108,6 +109,10 @@ color = Color(0, 0, 0, 0)
 
 [node name="SelectSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_3f7m4")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6tl50")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/FreePlayButton" to="." method="_on_free_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
